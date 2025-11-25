@@ -177,17 +177,19 @@ curl -X PUT http://localhost:3000/tasks/{taskId}/status \
 
 ## 🧪 Testing
 
-### Run All Tests
+### Run All Tests (Unit + E2E)
 ```bash
 npm test
-```
-
-### Run Unit Tests
-```bash
+# or
 npm run test
 ```
 
-### Run E2E Tests
+### Run Unit Tests Only
+```bash
+npm run test:unit
+```
+
+### Run E2E Tests Only
 ```bash
 npm run test:e2e
 ```
@@ -203,8 +205,16 @@ npm run test:cov
   - `src/domain/entities/*.spec.ts`
   - `src/application/use-cases/**/*.spec.ts`
   
-- **Integration Tests**: Test API endpoints end-to-end
-  - `test/app.e2e-spec.ts`
+- **E2E Tests**: Test API endpoints end-to-end
+  - `test/app.e2e-spec.ts` - Main entry point that imports all test suites
+  - `test/users.e2e-spec.ts` - User API endpoint tests
+  - `test/tasks.e2e-spec.ts` - Task API endpoint tests
+  - `test/test-setup.ts` - Shared test setup and app initialization helper
+
+The e2e tests are organized into separate files for better maintainability:
+- Each API resource has its own test file
+- Shared setup logic is extracted to `test-setup.ts` for reusability
+- All tests run together when executing `npm run test:e2e`
 
 ## 🔧 Technology Stack
 

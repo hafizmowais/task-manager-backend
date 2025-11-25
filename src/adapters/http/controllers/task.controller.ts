@@ -121,6 +121,7 @@ export class TaskController {
   }
 
   @Post(':id/assign')
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Assign a task to a user' })
   @ApiParam({ name: 'id', description: 'Task ID' })
   @ApiResponse({ status: 200, description: 'Task assigned successfully', type: TaskResponseDto })
